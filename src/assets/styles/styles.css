@@ -1,0 +1,11 @@
+.avatar{
+    height: 50px;
+    width: 50px;
+}
+.post{
+    border-radius: 20px;
+    border: none;
+}
+.full-width-textarea{
+    width: 100%;
+}
