@@ -10,6 +10,7 @@ const Notification = () => {
     const [replay, setReplay] = useState()
     const [post, setPost] = useState()
     const [count, setCount] = useState(0)
+
     return (
         <>
             <Navbar />
@@ -37,7 +38,7 @@ const Notification = () => {
                                 <Colxx lg={1} sm={1} md={1}>
                                     <i className="bi bi-heart" onClick={() => { setCount(count + 1) }}>{data?.like} Likes</i>
                                 </Colxx>
-                                <Colxx lg={1} sm={1} md={1}>
+                                <Colxx lg={2} sm={1} md={1}>
                                     <i className="bi bi-chat">{data?.comment} comments</i>
                                 </Colxx>
                             </Row>

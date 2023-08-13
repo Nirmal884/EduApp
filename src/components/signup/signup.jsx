@@ -35,7 +35,7 @@ const SignUp = () => {
       // Reset the form after successful submission
       resetForm();
     } catch (error) {
-      // User creation or data storage failed
+      // User creation or data storing in firebase database failed
       console.error('Error creating user:', error.message);
     }
   };

@@ -8,11 +8,12 @@ import { homeData } from './homeData'
 const Index = () => {
   return (
     <>
-      
+      {/* navbar component */}
       <Navbar/>
 
       {/* user section */}
       <Row className='mt-5'>
+        <h2>User Status</h2>
       {homeData?.map((data,index)=>(
       <Colxx lg={4} key={index}>
         <Card className='shadow-lg'>
