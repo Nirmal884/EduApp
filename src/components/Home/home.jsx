@@ -27,7 +27,14 @@ const Index = () => {
                   <span className='text-muted'>{data?.uId}</span>
                 </div>
                 <div className="col">
-                  <span className="badge text-bg-success">{data.status}</span>
+                <p>
+                  {data.status === 'New' ? (
+                    <span className="badge text-bg-success">{data?.status}</span>
+                  ) : (
+                    <span className="badge text-bg-danger">{data?.status}</span>
+                  )}
+                </p>
+
                 </div>
               </Row>
             </CardHeader>
@@ -72,7 +79,9 @@ const Index = () => {
       </Colxx>
       ))}
     </Row>
-      
+
+    
+      {/* for course field */}
       <div className="mt-5">
         <Course />
       </div>

@@ -4,3 +4,16 @@
   padding: 2rem;
   /* text-align: center; */
 }
+.stepperBtn {
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background: #172539;
+  color: #63b38f;
+  border-radius: 12px;
+  padding: 0.5em 1.4em;
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 1.4em;
+}
