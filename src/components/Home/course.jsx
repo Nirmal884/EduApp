@@ -7,8 +7,6 @@ import FinalDetails from './FormData/finalDetails';
 
 const Course = () => {
 
-  //retrieving data from localstorage
-  const savedData = JSON.parse(localStorage.getItem('basicDetails'));
 
   //next page indication
   const handleStepperNext = () => {
@@ -17,6 +15,9 @@ const Course = () => {
 
   //save data to firebase real-time database
   const onSubmit = async () => {
+
+    //retrieving data from localstorage
+    const savedData = JSON.parse(localStorage.getItem('basicDetails'));
     if(savedData){
     const { address, admission, affiliation, city, document, duration1, duration2, email, entrance, intakes, mobile, name, qualification, service, street, zip } = savedData;
     try {
