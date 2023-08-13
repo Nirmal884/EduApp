@@ -6,6 +6,7 @@ import Select from 'react-select';
 import { Colxx } from '../../../assets/styles/customStyles';
 
 const AdditionalDetails = () => {
+
     // Validation schema
     const SignupSchema = Yup.object().shape({
         address: Yup.string().required('Enter your Address'),
@@ -61,7 +62,9 @@ const AdditionalDetails = () => {
         { label: 'October', value: 'October', key: 9 },
         { label: 'November', value: 'November', key: 10 },
         { label: 'December', value: 'December', key: 11 },
-      ];
+    ];
+
+    //   for submitting data to localstorage along with previous data
 
     const onSubmit = (values) => {
 
@@ -88,7 +91,7 @@ const AdditionalDetails = () => {
         alert("Saved")
 
         console.log('Form data saved:', newData);
-       
+
     };
 
     const savedData = JSON.parse(localStorage.getItem('basicDetails'));
@@ -121,19 +124,19 @@ const AdditionalDetails = () => {
             <Formik
                 initialValues={{
                     address: savedData?.address || '',
-                    zip:savedData?.zip ||  '',
-                    street:savedData?.street || '',
-                    city:savedData?.city || '',
-                    admision:savedData?.admision || '',
-                    services:savedData?.services || '',
+                    zip: savedData?.zip || '',
+                    street: savedData?.street || '',
+                    city: savedData?.city || '',
+                    admision: savedData?.admision || '',
+                    services: savedData?.services || '',
                     affiliation: savedData?.affiliation || '',
-                    entrance:savedData?.entrance || '' ,
-                    document:savedData?.document || '',
-                    intakes:savedData?.intakes || '',
-                    duration1:savedData?.duration1 || '',
-                    duration2:savedData?.duration2 || '',
+                    entrance: savedData?.entrance || '',
+                    document: savedData?.document || '',
+                    intakes: savedData?.intakes || '',
+                    duration1: savedData?.duration1 || '',
+                    duration2: savedData?.duration2 || '',
 
-                    
+
                 }}
                 onSubmit={onSubmit}
                 validationSchema={SignupSchema}
@@ -280,12 +283,12 @@ const AdditionalDetails = () => {
                             <Colxx lg={6}>
                                 <div className="d-flex justify-content-center align-items-center">
                                     <FormGroup className="form-group mt-4 input-group">
-                                    <FormikReactSelect
-                                        name="intakes"
-                                        id="intakes"
-                                        options={Intakes}
-                                        onChange={setFieldValue}
-                                    />
+                                        <FormikReactSelect
+                                            name="intakes"
+                                            id="intakes"
+                                            options={Intakes}
+                                            onChange={setFieldValue}
+                                        />
                                         <span className="input-group-text">+</span>
                                     </FormGroup>
                                 </div>
@@ -299,7 +302,7 @@ const AdditionalDetails = () => {
                                 </Colxx>
                                 <Colxx lg={12}>
                                     <FormGroup className="form-group mb-2 input-group">
-                                        <Field className="form-control" type="text" id='duration2' name='duration2' placeholder='2 Year'/>
+                                        <Field className="form-control" type="text" id='duration2' name='duration2' placeholder='2 Year' />
                                         <span className="input-group-text">+</span>
                                     </FormGroup>
                                 </Colxx>

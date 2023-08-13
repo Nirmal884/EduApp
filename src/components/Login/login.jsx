@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Card, CardTitle, Form, FormGroup, Label, Row } from 'reactstrap'
-import {Colxx} from '../../assets/styles/customStyles'
+import { Colxx } from '../../assets/styles/customStyles'
 import { Field, Formik } from 'formik'
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import {signInWithEmailAndPassword} from 'firebase/auth'
-import {auth} from '../../config/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../config/firebase'
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    
-//validation schema
+
+  //validation schema
   const LoginSchema = Yup.object().shape({
     email: Yup.string().required('Please enter email')
       .email('Invalid email address'),
@@ -23,20 +23,20 @@ const Login = () => {
 
   const onSubmit = async (values, { resetForm }) => {
     try {
-      // Create user in Firebase 
-      const userCredential = await signInWithEmailAndPassword(auth,values.email, values.password);
-  
+      // Sign in user
+      const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
+
       // User creation successful
       const user = userCredential.user;
       console.log('User Signed In:', user);
       navigate('/home')
-      
-    
+
+
       // Reset the form after successful submission
       resetForm();
     } catch (error) {
-      // User creation or data storage failed
-      console.error('Error creating user:', error);
+      // User signin in failed
+      console.error('Error Signin in user:', error);
     }
   };
 
@@ -58,64 +58,64 @@ const Login = () => {
                     </p>
                   </div>
 
-                    <Formik
-                      initialValues={{
-                        email: '',
-                        password: '',
-                      }}
-                      onSubmit={onSubmit}
-                      validationSchema={LoginSchema}
-                    >
-                      {({ errors, touched ,handleSubmit}) => (
-                        <Form className="av-tooltip tooltip-right-bottom form-group" onSubmit={handleSubmit}>
-                          <FormGroup className="form-group has-float-label  mb-2">
-                            <Label>
-                             Email
-                            </Label>
-                            <Field className="form-control" type="email" id='email' name='email' />
-                            {errors.email && touched.email && (
-                              <div className="invalid-feedback d-block">
-                                {errors.email}
-                              </div>
-                            )}
-                          </FormGroup>
+                  <Formik
+                    initialValues={{
+                      email: '',
+                      password: '',
+                    }}
+                    onSubmit={onSubmit}
+                    validationSchema={LoginSchema}
+                  >
+                    {({ errors, touched, handleSubmit }) => (
+                      <Form className="av-tooltip tooltip-right-bottom form-group" onSubmit={handleSubmit}>
+                        <FormGroup className="form-group has-float-label  mb-2">
+                          <Label>
+                            Email
+                          </Label>
+                          <Field className="form-control" type="email" id='email' name='email' />
+                          {errors.email && touched.email && (
+                            <div className="invalid-feedback d-block">
+                              {errors.email}
+                            </div>
+                          )}
+                        </FormGroup>
 
-                          <FormGroup className="form-group has-float-label  mb-4">
-                            <Label>
-                              Password
-                            </Label>
-                            <Field className="form-control" type="password" id='password' name='password' />
-                            {errors.password && touched.password && (
-                              <div className="invalid-feedback d-block">
-                                {errors.password}
-                              </div>
-                            )}
-                          </FormGroup>
-                          <div className="d-flex justify-content-center align-items-center mb-2">
-                            <Button
-                              type="submit"
-                              color="secondary"
-                              className="btn-shadow"
-                              size="lg"
-                            >
-                              Login
-                            </Button>
-                          </div>
-                          <div className="align-center">
-                            <p className="black mb-4 text-muted">
-                              Dont have an account ? <Link to= '/signup'>SignUp</Link>
-                            </p>
-                          </div>
-                        </Form>
-                      )}
-                    </Formik>
+                        <FormGroup className="form-group has-float-label  mb-4">
+                          <Label>
+                            Password
+                          </Label>
+                          <Field className="form-control" type="password" id='password' name='password' />
+                          {errors.password && touched.password && (
+                            <div className="invalid-feedback d-block">
+                              {errors.password}
+                            </div>
+                          )}
+                        </FormGroup>
+                        <div className="d-flex justify-content-center align-items-center mb-2">
+                          <Button
+                            type="submit"
+                            color="secondary"
+                            className="btn-shadow"
+                            size="lg"
+                          >
+                            Login
+                          </Button>
+                        </div>
+                        <div className="align-center">
+                          <p className="black mb-4 text-muted">
+                            Dont have an account ? <Link to='/signup'>SignUp</Link>
+                          </p>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
                 </div>
               </Colxx>
 
             </div>
           </Card>
         </Colxx>
-      </Row> 
+      </Row>
     </>
 
   )

@@ -7,12 +7,15 @@ import FinalDetails from './FormData/finalDetails';
 
 const Course = () => {
 
+  //retrieving data from localstorage
   const savedData = JSON.parse(localStorage.getItem('basicDetails'));
 
+  //next page indication
   const handleStepperNext = () => {
     console.log("next page");
   };
 
+  //save data to firebase real-time database
   const onSubmit = async () => {
     if(savedData){
     const { address, admission, affiliation, city, document, duration1, duration2, email, entrance, intakes, mobile, name, qualification, service, street, zip } = savedData;
@@ -50,7 +53,7 @@ const Course = () => {
       }
     } catch (error) {
       console.error("Error submitting data:", error);
-      alert("Some error occurred");
+      alert("Some error occurred",error);
     }
   }else{
     console.log("Data Is Empty")
@@ -60,6 +63,7 @@ const Course = () => {
   
   return (
     <div>
+      {/* for steper used for forms */}
       <Stepper 
         showProgressBar={true}
         defaultActiveStep="1"
@@ -69,6 +73,7 @@ const Course = () => {
         onContinue={handleStepperNext}
         onSubmit={onSubmit}
       >
+        {/* form components */}
         <div>
           <BasicDetails 
           />
