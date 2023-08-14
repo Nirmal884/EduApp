@@ -1,15 +1,42 @@
 import React, { useState } from 'react'
 import { Colxx } from '../../../assets/styles/customStyles'
-import { Button, Card, CardBody, CardDeck, Row } from 'reactstrap'
-import { CardContent } from '@mui/material'
 import Navbar from '../../constants/navbar'
 import { dataArray } from './notificationData'
+import Comment from './Comment'
+import useNode from '../../../hooks/useNode'
+import { Row } from 'reactstrap'
+
+const comments = {
+    id: 1,
+    items: [],
+  };
 
 const Notification = () => {
 
-    const [replay, setReplay] = useState()
-    const [post, setPost] = useState()
+    // const [replay, setReplay] = useState()
+    // const [post, setPost] = useState()
     const [count, setCount] = useState(0)
+    const [commentsData, setCommentsData] = useState(comments);
+
+    //custom hook for handling the edit delete and create 
+
+    const { insertNode, editNode, deleteNode } = useNode();
+
+    const handleInsertNode = (folderId, item) => {
+        const finalStructure = insertNode(commentsData, folderId, item);
+        setCommentsData(finalStructure);
+      };
+    
+      const handleEditNode = (folderId, value) => {
+        const finalStructure = editNode(commentsData, folderId, value);
+        setCommentsData(finalStructure);
+      };
+    
+      const handleDeleteNode = (folderId) => {
+        const finalStructure = deleteNode(commentsData, folderId);
+        const temp = { ...finalStructure };
+        setCommentsData(temp);
+      };
 
     return (
         <>
@@ -42,7 +69,7 @@ const Notification = () => {
                                     <i className="bi bi-chat">{data?.comment} comments</i>
                                 </Colxx>
                             </Row>
-                            <Row className='mt-2'>
+                            {/* <Row className='mt-2'>
                                 <div>
                                     <textarea className='full-width-textarea' name="" id="" cols="" rows="2" placeholder='Add a comment...'></textarea>
                                     <Button>Post</Button>
@@ -50,8 +77,14 @@ const Notification = () => {
                                 <div className="mt-2">
                                     <p>Comments</p>
                                 </div>
-                            </Row>
-                            <Row className='ms-4 mb-2'>
+                            </Row> */}
+                            <Comment
+                                handleInsertNode={handleInsertNode}
+                                handleEditNode={handleEditNode}
+                                handleDeleteNode={handleDeleteNode}
+                                comment={commentsData}
+                            />
+                            {/* <Row className='ms-4 mb-2'>
                                 <Colxx lg={1}>
                                     <img src={data?.commentSection?.avatar} className="img-thumbnail rounded-circle avatar" alt="..." />
                                 </Colxx>
@@ -118,7 +151,7 @@ const Notification = () => {
                                             </>}
                                     </Row>
                                 </Colxx>
-                            </Row>
+                            </Row> */}
                         </>
                     )
                 })}
